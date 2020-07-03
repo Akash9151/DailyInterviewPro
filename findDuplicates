@@ -1,0 +1,35 @@
+class Solution(object):
+  def findDuplicates(self, nums):
+    dup = {"temp"}
+    
+    
+    # O(N ** 2) Method to Solve this problem ----
+    for i in nums:
+        count = 0
+        for j in nums:
+            if( i == j):
+                count += 1
+        if(count >= 2):
+            dup.add(i)
+    
+    
+    # O(n) Method to Solve this problem ----
+    for i in range(len(nums)):
+        if(nums[i] == nums[len(nums) - (i+1)]):
+            dup.add(nums[i])
+    
+    
+    
+    
+    
+    
+    dup.remove("temp")
+    dup = [x for x in dup]
+    return dup
+    
+    
+    # List Comprehension Solution ----
+    return list(set([nums[i] for i in range(len(nums)) if ((nums[i] == nums[len(nums) - (i+1)]))]))
+
+print(Solution().findDuplicates([4,3,2,7,8,2,3,1]))
+# [2, 3])
